@@ -1,18 +1,20 @@
 package com.functional.interfaces;
 
-public class Greeter {
+interface MessageFormatter {
+    String format(String name, int times);
+}
 
-	public void runExample() {    	
-    	MessageFormatter formatter = this::createGreeting;
-    	
-    	// instead of: (name, times) -> createGreeting(name, times)
-    }
+public class Greeter {
 
     private String createGreeting(String name, int times) {
         return "Hello " + name + ", repeated " + times + " times!";
     }
+    
+	public void runExample() {    	
+    	MessageFormatter lambda = (name, times) -> createGreeting(name, times);
+    	
+		MessageFormatter methodReference = this::createGreeting;
+    }
 }
 
-interface MessageFormatter {
-    String format(String name, int times);
-}
+
